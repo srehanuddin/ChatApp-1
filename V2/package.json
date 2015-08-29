@@ -1,0 +1,14 @@
+{
+  "name": "ChatApp",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "^4.13.3",
+    "socket.io": "^1.3.6",
+	"gulp" : "*",
+	"gulp-typescript": "*",
+	"gulp-nodemon" : "*",
+	"gulp-open" : "*",
+	"ejs" : "*"
+  }
+}

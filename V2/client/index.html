@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+    <link rel='stylesheet' href='public/css/style.css' />
+  </head>
+  <body>
+    
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+      //var socket = io.connect('http://localhost:3300');
+      var socket = io.connect(window.location.hostname);
+
+      // on connection to server, ask for user's name with an anonymous callback
+      socket.on('connect', function(){
+          // call the server-side function 'adduser' and send one parameter (value of prompt)
+          socket.emit('adduser', prompt("What's your name?"));
+          //socket.emit('adduser', "What's your name?");
+      });
+
+      // listener, whenever the server emits 'updatechat', this updates the chat body
+      socket.on('updatechat', function (username, data) {
+          $('#conversation').append('<b>'+username + ':</b> ' + data + '<br>');
+          var elem = document.getElementById('conversation');
+          elem.scrollTop = elem.scrollHeight;
+      });
+
+      // listener, whenever the server emits 'updaterooms', this updates the room the client is in
+      socket.on('updaterooms', function(rooms, current_room) {
+          $('#rooms').empty();
+          $.each(rooms, function(key, value) {
+              if(value == current_room){
+                  $('#currentChannel').empty();
+                  $('#currentChannel').append( value );
+                  $('#rooms').append('<span>' + value + '</span>');
+              }
+              else {
+                  $('#rooms').append('<a href="#" onclick="switchRoom(\''+value+'\')">' + value + '</a>');
+              }
+          });
+      });
+
+      socket.on('appendnewroom', function(username, newroom) {
+          //alert(newroom);
+          $('#rooms').append('<div><a href="#" onclick="switchRoom(\''+newroom+'\')">' + newroom + '</a></div>');
+      });
+
+      // listener, whenever the server emits 'updateusers', this updates the username list
+      socket.on('updateusers', function(data) {
+          $('#users').empty();
+          $.each(data, function(key, value) {
+              //console.log(JSON.stringify(key) + " , " + JSON.stringify(value));
+              $('#users').append('<div>' + key + '</div>');
+          });
+      });
+
+      function switchRoom(room){
+          socket.emit('switchRoom', room);
+      }
+
+      // on load of page
+      $(function(){
+          // when the client clicks SEND
+          $('#datasend').click( function() {
+              var message = $('#data').val();
+              $('#data').val('');
+              // tell server to execute 'sendchat' and send along one parameter
+              if (message){
+                socket.emit('sendchat', message);
+              } else {
+                  alert ('Dont Send Blank Chat');
+              }
+          });
+
+          // when the client hits ENTER on their keyboard
+          $('#data').keypress(function(e) {
+              if(e.which == 13) {
+                  $(this).blur();
+                  $('#datasend').focus().click();
+              }
+          });
+
+          $('#createRoom').click( function() {
+              socket.emit('createroom', prompt("New Room Name?"));
+          });
+
+      });
+
+  </script>
+  <section id="mainContainer">
+
+      <div id="leftContainer" >
+          <h2>ROOMS</h2>
+          <div id="rooms"></div>
+      </div>
+
+      <div id="contentContainer">
+          <div class="heading">
+              <h2 id="currentChannel">Online Users</h2>
+              <span id="createRoom" class="btn">Create Room</span>
+          </div>
+          <div id="conversation"></div>
+          <div id="chatField">
+              <input id="data" type="text" placeholder="What's in your mind ??"  />
+              <input type="button" id="datasend" value="Send" />
+          </div>
+      </div>
+
+      <div id="rightContainer">
+          <h2>Online Users</h2>
+          <div id="users"></div>
+      </div>
+  </section>
+
+  </body>
+</html>
+
+
+
