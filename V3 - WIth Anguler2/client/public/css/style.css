@@ -1,0 +1,167 @@
+body {
+  background: #eeeeee;
+  font-size: 13px;
+  font-family: verdana;
+}
+
+h2 {
+    font-size: 1.3em;
+    padding: 0px 20px;
+}
+
+a {
+  color: #00B7FF;
+}
+
+
+#mainContainer {
+    margin: 5% 10% 5% 10%;
+    text-align: center;
+    width: 80%;
+}
+
+#leftContainer {
+     float: left;
+     width:20%;
+     height:400px;
+     padding:20px 0px;
+     background: #fff;
+     border-radius: 20px 0px 0px 20px;
+ }
+#contentContainer {
+    float: left;
+    width:59%;
+    height:400px;
+    padding:20px 0px;
+    background: #fff;
+    border-radius: 0px;
+    margin: 0% 0.5%;
+    text-align: left;
+}
+#rightContainer {
+    float: right;
+    width:20%;
+    height:400px;
+    padding:20px 0px;
+    background: #fff;
+    border-radius: 0px 20px 20px 0px;
+}
+
+#contentContainer .heading {
+    float: left;
+    width: 100%;
+}
+#contentContainer .heading h2 {
+    text-align: left;
+    margin: 0px 0px 10px 0px;
+    float: left;
+}
+#contentContainer .heading span {
+    float: right;
+    margin: -10px 20px 0px 0px;
+}
+
+#conversation {
+    margin: 10px 20px 10px 20px;
+    width: calc(100% - 40px);
+    float: left;
+    height: 320px;
+    overflow-y: auto;
+}
+
+#chatField {
+    margin: 0px 20px 0px 20px;
+    width: calc(100% - 40px);
+    float: left;
+}
+
+#chatField input[type=text]{
+    width: calc(70% - 20px);
+}
+#chatField input[type=button]{
+    width: calc(30% - 20px);
+}
+input{
+    padding: 10px;
+    border: 1px solid #000;
+}
+input:focus{
+    border: 1px solid #899bf6;
+    background-color: #f1f8ff;
+    -webkit-box-shadow: #899bf6 0px 0px 5px;
+    -moz-box-shadow: #899bf6 0px 0px 5px;
+    box-shadow: #899bf6 0px 0px 5px;
+}
+input[type=button]{
+    padding: 10px;
+    background: #899bf6;
+    color: white;
+}
+input[type=button]:active{
+    background: #5a64a2;
+    -webkit-box-shadow: #899bf6 0px 0px 5px;
+    -moz-box-shadow: #899bf6 0px 0px 5px;
+    box-shadow: #899bf6 0px 0px 5px;
+}
+.btn {
+    padding: 10px 10px;
+    margin: 0px 20px 0px 20px;
+    background: #899bf6;
+    color: white;
+    border-radius: 10px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+#leftContainer h2 {
+    text-align: right;
+    margin: 0px 0px 10px 0px;
+}
+
+#rooms {
+    overflow-y: auto;
+    height:350px;
+}
+#rooms a {
+    padding: 5px 10px 5px 20px;
+    display: block;
+    background: #dbdde2;
+    margin: 1px 1px;
+    text-align: left;
+    color: #000;
+    text-decoration: none;
+}
+#rooms a:hover {
+    padding: 5px 10px 5px 30px;
+    background: #76787d;
+    color: #f6f6f6;
+}
+#rooms span {
+    padding: 5px 10px;
+    display: block;
+    background: #76787d;
+    color: #f6f6f6;
+    margin: 1px 1px;
+    text-align: left;
+}
+
+
+#rightContainer h2 {
+    text-align: left;
+    margin: 0px 0px 10px 0px;
+}
+
+
+#users {
+    overflow-y: auto;
+    height:350px;
+}
+
+#users div {
+    padding: 5px 10px;
+    display: block;
+    background: #edf2fa;
+    color: #575857;
+    margin: 1px 1px;
+    text-align: left;
+}

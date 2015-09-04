@@ -1,0 +1,37 @@
+<section id="mainContainer">
+
+      <div id="leftContainer" >
+          <h2>ROOMS</h2>
+          <div id="rooms">
+              <div *ng-for="#room of rooms">
+                <a *ng-if="current_room != room" href="#" (click)="switchRoom(room)" >{{room}}</a>
+                <span *ng-if="current_room == room" >{{room}}</span>
+              </div>
+          </div>
+      </div>
+
+      <div id="contentContainer">
+          <div class="heading">
+              <h2 id="currentChannel">Online Users</h2>
+              <span id="createRoom" class="btn" (click)="createRoom()">Create Room</span>
+          </div>
+          <div id="conversation">
+            <div *ng-for="#con of conversation">
+                <b>{{con.user}}:</b> {{con.message}}
+            </div>
+          </div>
+          <div id="chatField">
+              <input id="data" type="text" placeholder="What's in your mind ??" #message (keyup)="doneTyping($event)"  />
+              <input type="button" id="datasend" value="Send" (click)="messageSend(message.value)" />
+          </div>
+      </div>
+
+      <div id="rightContainer">
+          <h2>Online Users</h2>
+          <div id="users">
+            <div *ng-for="#user of users">
+                {{user}}
+            </div>
+          </div>
+      </div>
+  </section>
