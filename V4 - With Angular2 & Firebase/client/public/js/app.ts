@@ -102,6 +102,8 @@ class MyAppComponent {
     this.current_room = room;
     this.conversation = [];
     
+    this.myRoomRef.off("child_added");
+    
     let _self = this;
         
     //this.myRoomRef = this.dataRef.child("conversation").child(room);
@@ -112,10 +114,10 @@ class MyAppComponent {
       _self.conversation.push({ user : obj.user, message : obj.message })
     });
     
-    this.myRoomRef.on("child_changed", function(snapshot) {
+    /*this.myRoomRef.on("child_changed", function(snapshot) {
       var obj = snapshot.val();
       _self.conversation.push({ user : obj.user, message : obj.message })
-    });
+    });*/
   }
   
   createRoom(){

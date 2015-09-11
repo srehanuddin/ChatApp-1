@@ -76,6 +76,7 @@ var MyAppComponent = (function () {
     MyAppComponent.prototype.switchRoom = function (room) {
         this.current_room = room;
         this.conversation = [];
+        this.myRoomRef.off("child_added");
         var _self = this;
         //this.myRoomRef = this.dataRef.child("conversation").child(room);
         this.myRoomRef = new serviceFirebase_1.FirebaseService.Firebase(serviceFirebase_1.FirebaseService.FirebaseURL).child("conversation").child(room);
@@ -83,10 +84,10 @@ var MyAppComponent = (function () {
             var obj = snapshot.val();
             _self.conversation.push({ user: obj.user, message: obj.message });
         });
-        this.myRoomRef.on("child_changed", function (snapshot) {
-            var obj = snapshot.val();
-            _self.conversation.push({ user: obj.user, message: obj.message });
-        });
+        /*this.myRoomRef.on("child_changed", function(snapshot) {
+          var obj = snapshot.val();
+          _self.conversation.push({ user : obj.user, message : obj.message })
+        });*/
     };
     MyAppComponent.prototype.createRoom = function () {
         var roomName = prompt("New Room Name?");
