@@ -1,0 +1,7 @@
+node_modules
+*.idea
+*.zip
+*.rar
+build
+dist
+.setting
